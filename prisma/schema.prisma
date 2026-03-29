@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Paper {
+  id            String        @id @default(cuid())
+  arxivId       String        @unique
+  title         String
+  summary       String        @db.Text
+  authors       String[]
+  publishedAt   DateTime
+  pdfUrl        String
+  categories    String[]
+  qualityScore  Float?
+  qualityReason String?
+  createdAt     DateTime      @default(now())
+
+  explanations  Explanation[]
+  bookmarks     Bookmark[]
+}
+
+model Explanation {
+  id        String   @id @default(cuid())
+  paperId   String
+  paper     Paper    @relation(fields: [paperId], references: [id], onDelete: Cascade)
+  level     String   // "beginner" | "intermediate" | "advanced"
+  content   String   @db.Text
+  model     String
+  createdAt DateTime @default(now())
+
+  @@unique([paperId, level])
+}
+
+model Bookmark {
+  id        String   @id @default(cuid())
+  paperId   String   @unique
+  paper     Paper    @relation(fields: [paperId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
