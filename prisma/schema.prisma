@@ -42,3 +42,12 @@ model Bookmark {
   paper     Paper    @relation(fields: [paperId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
 }
+
+model FetchLog {
+  id        String   @id @default(cuid())
+  runAt     DateTime @default(now())
+  fetched   Int      // total papers pulled from arXiv
+  qualified Int      // passed quality gate
+  rejected  Int      // failed quality gate
+  skipped   Int      // already in DB
+}
