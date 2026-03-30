@@ -789,21 +789,18 @@ export async function seedMustReadPapers(): Promise<number> {
   let added = 0;
 
   for (const paper of MUST_READ_PAPERS) {
-    const result = await prisma.paper.upsert({
-      where: { arxivId: paper.arxivId },
-      // If it already exists, leave it untouched
-      update: {},
-      // If it was deleted, restore it
-      create: {
-        ...paper,
-        qualityScore: 1.0,
-        qualityReason: "Must-read — foundational paper widely praised by the AI community.",
-      },
-    });
+    const existing = await prisma.paper.findUnique({ where: { arxivId: paper.arxivId } });
 
-    // Count only newly created (createdAt === updatedAt within 1s)
-    const isNew = Math.abs(result.createdAt.getTime() - (result.updatedAt?.getTime() ?? result.createdAt.getTime())) < 1000;
-    if (isNew) added++;
+    if (!existing) {
+      await prisma.paper.create({
+        data: {
+          ...paper,
+          qualityScore: 1.0,
+          qualityReason: "Must-read — foundational paper widely praised by the AI community.",
+        },
+      });
+      added++;
+    }
   }
 
   return added;
