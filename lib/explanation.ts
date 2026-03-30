@@ -1,5 +1,4 @@
-import { generateWithGroq, GROQ_MODELS } from "./groq";
-import { generateWithGemini, GEMINI_MODELS } from "./gemini";
+import { generateWithRotation, EXPLANATION_MODELS } from "./models";
 
 export type ExplanationLevel = "beginner" | "intermediate" | "advanced";
 
@@ -10,7 +9,7 @@ const EXPLANATION_PROMPT = (
   summary: string,
   level: ExplanationLevel
 ) => `
-You are an expert AI researcher and educator. Your task is to write a thorough, detailed explanation of the following research paper.
+You are a world-class AI researcher and science communicator. Your task is to write a comprehensive, deeply detailed explanation of this research paper. The reader should feel they have truly READ the paper, not just skimmed an abstract.
 
 Paper Title: ${title}
 Abstract: ${summary}
@@ -20,60 +19,63 @@ Explanation Level: ${level.toUpperCase()}
 Level-specific instructions:
 ${
   level === "beginner"
-    ? `- Write for someone with zero ML background
-- Use everyday analogies (cooking, sports, building blocks, etc.) for every concept
-- Avoid all mathematical notation and jargon
-- Every technical term must be immediately explained in plain language
-- Use short paragraphs and simple sentence structure
-- Make it engaging and story-like where possible`
+    ? `- Write for someone with zero ML or math background
+- Use vivid everyday analogies for EVERY technical concept (cooking, sports, lego, puzzles, etc.)
+- Avoid ALL mathematical notation and jargon — if a term must be used, explain it immediately in plain English
+- Write in a warm, conversational, story-like tone that keeps curiosity alive
+- Use short paragraphs (3–4 sentences max per paragraph)
+- Explain WHY things work, not just WHAT they are — make the reader feel the intuition
+- End each section by linking back to how it helps the reader's everyday understanding`
     : level === "intermediate"
-    ? `- Write for someone who knows Python and has basic ML knowledge (knows what gradient descent, neural networks, and loss functions are)
-- Use moderate technical language — define niche terms but don't over-explain basics
-- Include architecture intuition but skip heavy math derivations
-- Discuss why design choices were made, not just what they are
-- Reference comparable prior work where helpful`
-    : `- Write for an ML practitioner or researcher who reads papers regularly
-- Go deep: explain architectural details, loss functions, training procedures, hyperparameter choices
-- Discuss mathematical formulations where relevant
-- Critically analyze the experimental setup, baselines, and ablations
-- Point out potential weaknesses, edge cases, or open questions
-- Compare with related work in the field`
+    ? `- Write for someone who knows Python, basic ML, and has heard of gradient descent, neural networks, transformers, and loss functions
+- Use moderate technical language — define niche/paper-specific terms but don't over-explain well-known basics
+- Include architectural intuition: explain WHY design choices were made, not just WHAT they are
+- Reference comparable prior work (BERT, GPT, ViT, diffusion models, etc.) where helpful for context
+- Include enough detail that a practitioner could explain the paper to their team
+- Be precise about data flows, training objectives, and evaluation setups`
+    : `- Write for an ML researcher or engineer who reads papers regularly
+- Go deep on ALL technical details: architecture components, loss functions, training procedures, optimizer choices, hyperparameters, data preprocessing
+- Explain mathematical formulations and notation where relevant — don't shy away from equations
+- Critically analyze the experimental setup: are the baselines fair? Are the ablations convincing? What do the numbers actually prove?
+- Discuss connections to prior work, how this advances the field, and what it overturns
+- Point out potential weaknesses, reproducibility concerns, and open questions
+- Include your analysis of what follow-up work this enables`
 }
 
-Your explanation MUST cover ALL of the following sections in full detail. Each section should be multiple paragraphs — do not give brief bullet-point summaries:
+Your explanation MUST cover ALL 8 sections below in FULL depth. Each section should be multiple rich paragraphs — NOT bullet-point summaries. Write the way a knowledgeable friend would explain this paper over coffee.
 
-## 1. The Problem
-What specific problem does this paper address? Why is this problem hard? What were the limitations of prior approaches? Give full context so the reader understands why this paper was worth writing.
+## 1. What Is This Paper About? (The Big Picture)
+Give a complete, gripping overview of what this paper does and why it exists. What is the domain? Who cares about this problem? Set the stage so fully that even someone who has never heard of this subfield understands why this matters.
 
-## 2. The Core Idea
-What is the central insight or innovation? Explain the "aha moment" of the paper. What makes this approach different from everything that came before it?
+## 2. The Problem It Solves
+What specific, concrete problem does this paper address? Explain the problem from first principles. Why is this problem hard? What have people tried before and why did those approaches fail or fall short? Give full historical and technical context.
 
-## 3. How It Works
-Walk through the method step by step. Cover the architecture, algorithm, or framework in enough detail that the reader could explain it to someone else. Do not skip steps or hand-wave details.
+## 3. The Core Idea & Key Innovation
+What is the central insight or "aha moment" of this paper? What makes this approach fundamentally different from everything before it? Explain the intuition clearly before going into mechanics. This is the heart of the paper — spend serious time here.
 
-## 4. Key Results & Why They Matter
-What did the authors show empirically? Which benchmarks, metrics, and comparisons are most important? What do the results actually prove about the method?
+## 4. How It Works — Step by Step
+Walk through the method in enough detail that the reader could explain it to a colleague. Cover:
+- The overall architecture or framework
+- Each major component and what it does
+- How data flows through the system
+- What the training objective is and why it was chosen
+- Any novel tricks, regularization, or implementation details
+Do not skip steps. Do not hand-wave.
 
-## 5. Real-World Applications
-Where can this method be used in practice? Give concrete, specific use cases across multiple domains if applicable. What kinds of products or systems could be built with this?
+## 5. Key Results & What They Actually Prove
+What benchmarks did the authors evaluate on? What were the key numbers? Which comparisons matter most? Importantly — what do these results actually PROVE about the method? Are there surprising findings? What do ablations reveal about which parts of the method are essential?
 
-## 6. Limitations & Open Questions
-What does this approach still not solve? What are the known failure cases, computational costs, or assumptions that limit applicability? What follow-up work is needed?
+## 6. Why Is This Interesting? (Why Should You Care?)
+Beyond the raw results, why is this paper exciting? What door does it open? Does it change how we think about a problem? Is it a paradigm shift, a missing piece, or a crucial engineering advance? Make the reader feel the significance.
 
-Be thorough. A reader finishing this explanation should feel they have truly understood the paper — not just skimmed it.
+## 7. Real-World Applications
+Where can this be used in practice right now? Give concrete, specific examples across multiple domains. What kinds of products, systems, or tools could be built with this? Who would use it — researchers, companies, developers?
+
+## 8. Limitations, Weaknesses & Open Questions
+What does this approach still NOT solve? What are the known failure cases, computational costs, data requirements, or assumptions that limit applicability? What are the open questions this paper raises? What follow-up research is needed?
+
+Be thorough. Be deep. Be genuinely informative. A reader finishing this explanation should feel they have truly understood the paper — not just skimmed it.
 `.trim();
-
-interface ModelConfig {
-  provider: "groq" | "gemini";
-  model: string;
-  maxTokens?: number;
-}
-
-const MODEL_FOR_LEVEL: Record<ExplanationLevel, ModelConfig> = {
-  beginner: { provider: "groq", model: GROQ_MODELS.beginner, maxTokens: 6000 },
-  intermediate: { provider: "groq", model: GROQ_MODELS.intermediate, maxTokens: 8000 },
-  advanced: { provider: "gemini", model: GEMINI_MODELS.advanced },
-};
 
 export async function generateExplanation(
   title: string,
@@ -81,15 +83,5 @@ export async function generateExplanation(
   level: ExplanationLevel
 ): Promise<{ content: string; model: string }> {
   const prompt = EXPLANATION_PROMPT(title, summary, level);
-  const config = MODEL_FOR_LEVEL[level];
-
-  let content: string;
-
-  if (config.provider === "groq") {
-    content = await generateWithGroq(prompt, config.model, config.maxTokens);
-  } else {
-    content = await generateWithGemini(prompt, config.model);
-  }
-
-  return { content, model: config.model };
+  return generateWithRotation(prompt, EXPLANATION_MODELS);
 }

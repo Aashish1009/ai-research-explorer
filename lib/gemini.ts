@@ -10,9 +10,15 @@ export const GEMINI_MODELS = {
 
 export async function generateWithGemini(
   prompt: string,
-  modelName: string
+  modelName: string,
+  maxOutputTokens = 8192
 ): Promise<string> {
-  const model = genAI.getGenerativeModel({ model: modelName });
+  const model = genAI.getGenerativeModel({
+    model: modelName,
+    generationConfig: {
+      maxOutputTokens,
+    },
+  });
 
   const result = await model.generateContent(prompt);
   const response = result.response;

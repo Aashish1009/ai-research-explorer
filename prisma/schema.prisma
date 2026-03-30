@@ -18,6 +18,7 @@ model Paper {
   categories    String[]
   qualityScore  Float?
   qualityReason String?
+  upvotes       Int           @default(0)
   createdAt     DateTime      @default(now())
 
   explanations  Explanation[]
@@ -46,8 +47,9 @@ model Bookmark {
 model FetchLog {
   id        String   @id @default(cuid())
   runAt     DateTime @default(now())
-  fetched   Int      // total papers pulled from arXiv
+  fetched   Int      // total papers pulled from HuggingFace
   qualified Int      // passed quality gate
   rejected  Int      // failed quality gate
   skipped   Int      // already in DB
+  hfDate    String?  // YYYY-MM-DD date fetched from HuggingFace
 }

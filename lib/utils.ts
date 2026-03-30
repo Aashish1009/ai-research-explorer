@@ -10,6 +10,7 @@ export function formatDate(date: Date | string): string {
     year: "numeric",
     month: "short",
     day: "numeric",
+    timeZone: "UTC", // prevents SSR/client hydration mismatch
   });
 }
 

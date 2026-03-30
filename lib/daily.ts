@@ -1,5 +1,6 @@
-import { ingestNewPapers } from "./ingest";
-import { seedMustReadPapers } from "./mustread";
+// Automatic daily fetch has been removed.
+// Papers are fetched manually via the "Run Now" button on the home page.
+// This file is kept as a stub so existing imports don't break at compile time.
 
 export interface DailyResult {
   date: string;
@@ -8,25 +9,11 @@ export interface DailyResult {
   alreadyDone: boolean;
 }
 
-// In-memory dedup — prevents multiple concurrent checks per server process
-let lastCheckDate = "";
-let lastCheckResult: DailyResult | null = null;
-
 export async function runDailyCheck(): Promise<DailyResult> {
-  const today = new Date().toISOString().split("T")[0];
-
-  if (lastCheckDate === today && lastCheckResult) {
-    return { ...lastCheckResult, alreadyDone: true };
-  }
-
-  // Mark as running immediately to block concurrent calls
-  lastCheckDate = today;
-
-  const [classics, newPapers] = await Promise.all([
-    seedMustReadPapers(),
-    ingestNewPapers(undefined, 100),
-  ]);
-
-  lastCheckResult = { date: today, newPapers, classics, alreadyDone: false };
-  return lastCheckResult;
+  return {
+    date: new Date().toISOString().split("T")[0],
+    newPapers: 0,
+    classics: 0,
+    alreadyDone: true,
+  };
 }

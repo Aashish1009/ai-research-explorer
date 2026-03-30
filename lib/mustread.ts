@@ -461,25 +461,349 @@ const MUST_READ_PAPERS: SeedPaper[] = [
     pdfUrl: "https://arxiv.org/pdf/2412.19437",
     categories: ["cs.CL", "cs.AI", "cs.LG"],
   },
+
+  // ── Foundational Computer Vision ──────────────────────────────────────────
+  {
+    arxivId: "1207.0248",
+    title: "ImageNet Classification with Deep Convolutional Neural Networks (AlexNet)",
+    summary: "We trained a large, deep convolutional neural network to classify the 1.2 million high-resolution images in the ImageNet LSVRC-2010 contest into the 1000 different classes. On the test data, we achieved top-1 and top-5 error rates of 37.5% and 17.0%, which is considerably better than the previous state-of-the-art. The neural network has 60 million parameters and 650,000 neurons. AlexNet sparked the modern deep learning revolution.",
+    authors: ["Alex Krizhevsky", "Ilya Sutskever", "Geoffrey E. Hinton"],
+    publishedAt: new Date("2012-12-03"),
+    pdfUrl: "https://arxiv.org/pdf/1207.0248",
+    categories: ["cs.CV", "cs.LG"],
+  },
+  {
+    arxivId: "1409.4842",
+    title: "Going Deeper with Convolutions (GoogLeNet / Inception)",
+    summary: "We propose a deep convolutional neural network architecture codenamed Inception that achieves the new state of the art for classification and detection at the ILSVRC 2014 challenge. The Inception architecture significantly improves utilization of computing resources inside the network through a carefully crafted design that allows for increasing the depth and width of the network while keeping the computational budget constant.",
+    authors: ["Christian Szegedy", "Wei Liu", "Yangqing Jia", "Pierre Sermanet", "Scott Reed", "Dragomir Anguelov", "Dumitru Erhan", "Vincent Vanhoucke", "Andrew Rabinovich"],
+    publishedAt: new Date("2014-09-17"),
+    pdfUrl: "https://arxiv.org/pdf/1409.4842",
+    categories: ["cs.CV", "cs.LG"],
+  },
+  {
+    arxivId: "1505.04597",
+    title: "U-Net: Convolutional Networks for Biomedical Image Segmentation",
+    summary: "There is large consent that successful training of deep networks requires many thousand annotated training samples. In this paper, we present a network and training strategy that relies on the strong use of data augmentation to use the available annotated samples more efficiently. The architecture consists of a contracting path to capture context and a symmetric expanding path that enables precise localization. U-Net has become the standard architecture for image segmentation tasks.",
+    authors: ["Olaf Ronneberger", "Philipp Fischer", "Thomas Brox"],
+    publishedAt: new Date("2015-05-18"),
+    pdfUrl: "https://arxiv.org/pdf/1505.04597",
+    categories: ["cs.CV"],
+  },
+  {
+    arxivId: "1506.02640",
+    title: "You Only Look Once: Unified, Real-Time Object Detection (YOLO)",
+    summary: "We present YOLO, a new approach to object detection. Prior work on object detection repurposes classifiers to perform detection. Instead, we frame object detection as a regression problem to spatially separated bounding boxes and associated class probabilities. A single neural network predicts bounding boxes and class probabilities directly from full images in one evaluation. YOLO processes images at 45 frames per second.",
+    authors: ["Joseph Redmon", "Santosh Divvala", "Ross Girshick", "Ali Farhadi"],
+    publishedAt: new Date("2015-06-08"),
+    pdfUrl: "https://arxiv.org/pdf/1506.02640",
+    categories: ["cs.CV"],
+  },
+  {
+    arxivId: "1905.11946",
+    title: "EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks",
+    summary: "Convolutional Neural Networks (ConvNets) are commonly developed at a fixed resource budget, and then scaled up for better accuracy if more resources are available. In this paper, we systematically study model scaling and identify that carefully balancing network depth, width, and resolution can lead to better performance. We propose a compound scaling method and achieve state-of-the-art 84.3% top-1 accuracy on ImageNet.",
+    authors: ["Mingxing Tan", "Quoc V. Le"],
+    publishedAt: new Date("2019-05-28"),
+    pdfUrl: "https://arxiv.org/pdf/1905.11946",
+    categories: ["cs.LG", "cs.CV"],
+  },
+  {
+    arxivId: "2005.12872",
+    title: "End-to-End Object Detection with Transformers (DETR)",
+    summary: "We present a new method that views object detection as a direct set prediction problem. Our approach streamlines the detection pipeline, effectively removing the need for hand-designed components like a non-maximum suppression procedure or anchor generation that explicitly encode prior knowledge about the task. DETR demonstrates accuracy and run-time performance on par with the well-established and highly-optimized Faster RCNN baseline on COCO object detection dataset.",
+    authors: ["Nicolas Carion", "Francisco Massa", "Gabriel Synnaeve", "Nicolas Usunier", "Alexander Kirillov", "Sergey Zagoruyko"],
+    publishedAt: new Date("2020-05-26"),
+    pdfUrl: "https://arxiv.org/pdf/2005.12872",
+    categories: ["cs.CV"],
+  },
+  {
+    arxivId: "2104.14294",
+    title: "Emerging Properties in Self-Supervised Vision Transformers (DINO)",
+    summary: "In this paper, we question if self-supervised learning provides new properties to Vision Transformer (ViT) that stand out compared to convolutional networks. We show that self-supervised ViT features explicitly contain the scene layout and object boundaries. These features are also excellent k-NN classifiers, reaching 78.3% top-1 on ImageNet with no finetuning. We propose a self-supervised method called DINO.",
+    authors: ["Mathilde Caron", "Hugo Touvron", "Ishan Misra", "Hervé Jégou", "Julien Mairal", "Piotr Bojanowski", "Armand Joulin"],
+    publishedAt: new Date("2021-04-29"),
+    pdfUrl: "https://arxiv.org/pdf/2104.14294",
+    categories: ["cs.CV"],
+  },
+  {
+    arxivId: "2111.06377",
+    title: "Masked Autoencoders Are Scalable Vision Learners (MAE)",
+    summary: "This paper shows that masked autoencoders (MAE) are scalable self-supervised learners for computer vision. Our MAE approach is simple: we mask random patches of the input image and reconstruct the missing pixels. It is based on two core designs. First, we develop an asymmetric encoder-decoder architecture. Second, we find that masking a high proportion of the input image (e.g., 75%) yields a nontrivial and meaningful self-supervisory task.",
+    authors: ["Kaiming He", "Xinlei Chen", "Saining Xie", "Yanghao Li", "Piotr Dollár", "Ross Girshick"],
+    publishedAt: new Date("2021-11-11"),
+    pdfUrl: "https://arxiv.org/pdf/2111.06377",
+    categories: ["cs.CV"],
+  },
+  {
+    arxivId: "2201.03545",
+    title: "A ConvNet for the 2020s (ConvNeXt)",
+    summary: "The 'Roaring 20s' of visual recognition began with the introduction of Vision Transformers, which quickly superseded ConvNets as the state-of-the-art image classification model. Convolutions are not outdated. We reexamine the design spaces and test the limits of what a pure ConvNet can achieve. We gradually modernize a standard ResNet toward the design of a vision Transformer, and discover several key components that contribute to the performance difference.",
+    authors: ["Zhuang Liu", "Hanzi Mao", "Chao-Yuan Wu", "Christoph Feichtenhofer", "Trevor Darrell", "Saining Xie"],
+    publishedAt: new Date("2022-01-10"),
+    pdfUrl: "https://arxiv.org/pdf/2201.03545",
+    categories: ["cs.CV"],
+  },
+
+  // ── NLP Foundations ───────────────────────────────────────────────────────
+  {
+    arxivId: "1409.3215",
+    title: "Sequence to Sequence Learning with Neural Networks",
+    summary: "Deep Neural Networks (DNNs) are powerful models that have achieved excellent performance on difficult learning tasks. Although DNNs work well whenever large labeled training sets are available, they cannot be used to map sequences to sequences. In this paper, we present a general end-to-end approach to sequence learning that makes minimal assumptions on the sequence structure. The key innovation is the encoder-decoder architecture that became the foundation for modern NLP.",
+    authors: ["Ilya Sutskever", "Oriol Vinyals", "Quoc V. Le"],
+    publishedAt: new Date("2014-09-10"),
+    pdfUrl: "https://arxiv.org/pdf/1409.3215",
+    categories: ["cs.CL", "cs.LG"],
+  },
+  {
+    arxivId: "1901.02860",
+    title: "Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context",
+    summary: "Transformers have a potential of learning longer-term dependency, but are limited by a fixed-length context in the setting of language modeling. We propose a novel neural architecture Transformer-XL that enables learning dependency beyond a fixed length without disrupting temporal coherence. It achieves better performance than RNNs and vanilla Transformers on both short and long sequences.",
+    authors: ["Zihang Dai", "Zhilin Yang", "Yiming Yang", "Jaime Carbonell", "Quoc V. Le", "Ruslan Salakhutdinov"],
+    publishedAt: new Date("2019-01-09"),
+    pdfUrl: "https://arxiv.org/pdf/1901.02860",
+    categories: ["cs.LG", "cs.CL"],
+  },
+  {
+    arxivId: "1906.08237",
+    title: "XLNet: Generalized Autoregressive Pretraining for Language Understanding",
+    summary: "With the capability of modeling bidirectional contexts, denoising autoencoding based pretraining like BERT achieves better performance than pretraining approaches based on autoregressive language modeling. XLNet is a generalized autoregressive pretraining method that overcomes BERT's limitations by using a permutation language modeling objective, outperforming BERT on 20 tasks.",
+    authors: ["Zhilin Yang", "Zihang Dai", "Yiming Yang", "Jaime Carbonell", "Ruslan Salakhutdinov", "Quoc V. Le"],
+    publishedAt: new Date("2019-06-19"),
+    pdfUrl: "https://arxiv.org/pdf/1906.08237",
+    categories: ["cs.CL", "cs.LG"],
+  },
+
+  // ── Multimodal & Generation ───────────────────────────────────────────────
+  {
+    arxivId: "2102.12092",
+    title: "Zero-Shot Text-to-Image Generation (DALL-E)",
+    summary: "Text-to-image generation has traditionally focused on finding better modeling assumptions for training on a fixed dataset. We describe a simple approach for this task based on a transformer that autoregressively models the text and image tokens as a single stream of data. We find that the combination of large scale training data and architecture results in flexible, high fidelity generation across a vast range of text prompts.",
+    authors: ["Aditya Ramesh", "Mikhail Pavlov", "Gabriel Goh", "Scott Gray", "Chelsea Voss", "Alec Radford", "Mark Chen", "Ilya Sutskever"],
+    publishedAt: new Date("2021-02-24"),
+    pdfUrl: "https://arxiv.org/pdf/2102.12092",
+    categories: ["cs.CV", "cs.LG"],
+  },
+  {
+    arxivId: "2204.06125",
+    title: "Hierarchical Text-Conditional Image Generation with CLIP Latents (DALL-E 2)",
+    summary: "Contrastive models like CLIP have been shown to learn robust representations of paired image and text. We propose a two-stage model: a prior that generates a CLIP image embedding given a text caption, and a decoder that generates an image conditioned on the image embedding. We show that explicitly generating image representations improves image diversity while being faithful to captions.",
+    authors: ["Aditya Ramesh", "Prafulla Dhariwal", "Alex Nichol", "Casey Chu", "Mark Chen"],
+    publishedAt: new Date("2022-04-13"),
+    pdfUrl: "https://arxiv.org/pdf/2204.06125",
+    categories: ["cs.CV", "cs.LG"],
+  },
+  {
+    arxivId: "2205.11487",
+    title: "Photorealistic Text-to-Image Diffusion Models with Deep Language Understanding (Imagen)",
+    summary: "We present Imagen, a text-to-image diffusion model with an unprecedented degree of photorealism and a deep level of language understanding. Imagen builds on the power of large transformer language models in understanding text and hinges on the strength of diffusion models in high-fidelity image generation. Our key finding is that generic large language models (e.g., T5) pretrained on text-only corpora are surprisingly effective at encoding text for image synthesis.",
+    authors: ["Chitwan Saharia", "William Chan", "Saurabh Saxena", "Lala Li", "Jay Whang", "Emily Denton", "Seyed Kamyar Seyed Ghasemipour", "Burcu Karagol Ayan", "S. Sara Mahdavi", "Rapha Gontijo Lopes", "Tim Salimans", "Jonathan Ho", "David J Fleet", "Mohammad Norouzi"],
+    publishedAt: new Date("2022-05-23"),
+    pdfUrl: "https://arxiv.org/pdf/2205.11487",
+    categories: ["cs.CV", "cs.LG"],
+  },
+
+  // ── RL, Alignment & Training ─────────────────────────────────────────────
+  {
+    arxivId: "1706.03741",
+    title: "Deep Reinforcement Learning from Human Preferences (RLHF)",
+    summary: "For sophisticated reinforcement learning (RL) systems to interact safely and helpfully with real users, we need to be able to identify goals that are complex and potentially difficult to specify. We explore whether we can effectively learn reward functions from human feedback and use them to train agents. The key insight is that humans can evaluate agent behavior without defining a reward function.",
+    authors: ["Paul F. Christiano", "Jan Leike", "Tom B. Brown", "Miljan Martic", "Shane Legg", "Dario Amodei"],
+    publishedAt: new Date("2017-06-12"),
+    pdfUrl: "https://arxiv.org/pdf/1706.03741",
+    categories: ["cs.LG", "cs.AI"],
+  },
+  {
+    arxivId: "2201.02177",
+    title: "Grokking: Generalization Beyond Overfitting on Small Algorithmic Datasets",
+    summary: "In this paper we introduce the notion of 'grokking' — generalization that occurs long after overfitting the training data, on small algorithmically generated datasets. We study grokking on a variety of small datasets including modular arithmetic, permutation groups, and graph theory problems. This finding has important implications for understanding how neural networks learn and has spurred a field of mechanistic interpretability research.",
+    authors: ["Alethea Power", "Yuri Burda", "Harri Edwards", "Igor Babuschkin", "Vedant Misra"],
+    publishedAt: new Date("2022-01-06"),
+    pdfUrl: "https://arxiv.org/pdf/2201.02177",
+    categories: ["cs.LG"],
+  },
+
+  // ── Instruction Tuning & Alignment (2022–2023) ────────────────────────────
+  {
+    arxivId: "2212.10560",
+    title: "Self-Instruct: Aligning Language Models with Self-Generated Instructions",
+    summary: "Large language models (LLMs) are increasingly being used to bootstrap instruction-following capabilities, but this process requires significant amounts of seed data. In this work, we introduce Self-Instruct, a framework that improves the instruction-following capabilities of pretrained language models by bootstrapping off their own generations. Our pipeline generates instructions, input, and output samples from the language model and then prunes them before using them to fine-tune the original model.",
+    authors: ["Yizhong Wang", "Yeganeh Kordi", "Swaroop Mishra", "Alisa Liu", "Noah A. Smith", "Daniel Khashabi", "Hannaneh Hajishirzi"],
+    publishedAt: new Date("2022-12-20"),
+    pdfUrl: "https://arxiv.org/pdf/2212.10560",
+    categories: ["cs.CL"],
+  },
+  {
+    arxivId: "2305.18290",
+    title: "Direct Preference Optimization: Your Language Model is Secretly a Reward Model (DPO)",
+    summary: "While large-scale unsupervised language models (LMs) learn broad world knowledge and some notion of reasoning ability, achieving precise control of their behavior is difficult due to the completely unsupervised nature of their training. We introduce Direct Preference Optimization (DPO), a stable, performant, and computationally lightweight alternative to RLHF that fine-tunes LLMs using human preference data directly, without needing a separate reward model.",
+    authors: ["Rafael Rafailov", "Archit Sharma", "Eric Mitchell", "Stefano Ermon", "Christopher D. Manning", "Chelsea Finn"],
+    publishedAt: new Date("2023-05-29"),
+    pdfUrl: "https://arxiv.org/pdf/2305.18290",
+    categories: ["cs.LG", "cs.CL", "cs.AI"],
+  },
+  {
+    arxivId: "2305.11206",
+    title: "LIMA: Less Is More for Alignment",
+    summary: "Large language models are trained in two stages: unsupervised pretraining from raw text, in order to develop broad world knowledge and linguistic ability, and large scale instruction tuning and reinforcement learning from human feedback, to better align to end tasks. We find that almost all knowledge in large language models is learned during pretraining, and only limited instruction tuning data is necessary to teach models to produce high quality output.",
+    authors: ["Chunting Zhou", "Pengfei Liu", "Puxin Xu", "Srini Iyer", "Jiao Sun", "Yuning Mao", "Xuezhe Ma", "Avia Efrat", "Ping Yu", "Lili Yu", "Susan Zhang", "Gargi Ghosh", "Mike Lewis", "Luke Zettlemoyer", "Omer Levy"],
+    publishedAt: new Date("2023-05-18"),
+    pdfUrl: "https://arxiv.org/pdf/2305.11206",
+    categories: ["cs.CL"],
+  },
+  {
+    arxivId: "2306.11644",
+    title: "Textbooks Are All You Need (Phi-1)",
+    summary: "We introduce phi-1, a new large language model for code, with significantly smaller size than competing models: phi-1 is a Transformer-based model with 1.3B parameters, trained for 4 days on 8 A100s. Despite this small size, phi-1 attains pass@1 accuracy 50.6% on HumanEval and 55.5% on MBPP. Central to our training approach is the use of 'textbook quality' data — a dataset of 6B tokens of filtered code datasets and GPT-3.5-generated textbooks.",
+    authors: ["Suriya Gunasekar", "Yi Zhang", "Jyoti Aneja", "Caio César Teodoro Mendes", "Allie Del Giorno", "Sivakanth Gopi", "Mojan Javaheripi", "Piero Kauffmann", "Gustavo de Rosa", "Olli Saarikivi", "Adil Salim", "Shital Shah", "Harkirat Singh Behl", "Xin Wang", "Sébastien Bubeck", "Ronen Eldan", "Adam Tauman Kalai", "Yin Tat Lee", "Yuanzhi Li"],
+    publishedAt: new Date("2023-06-20"),
+    pdfUrl: "https://arxiv.org/pdf/2306.11644",
+    categories: ["cs.CL", "cs.LG"],
+  },
+  {
+    arxivId: "2306.02707",
+    title: "Orca: Progressive Learning from Complex Explanation Traces of GPT-4",
+    summary: "Recent research has focused on enhancing the capability of smaller models through imitation learning from large foundation models (LFMs). We develop Orca, a 13-billion parameter model that learns to imitate the reasoning process of LFMs. Orca learns from rich signals from GPT-4 including explanation traces; step-by-step thought processes; and other complex instructions, guided by teacher assistance from ChatGPT.",
+    authors: ["Subhabrata Mukherjee", "Arindam Mitra", "Ganesh Jawahar", "Sahaj Agarwal", "Hamid Palangi", "Ahmed Awadallah"],
+    publishedAt: new Date("2023-06-05"),
+    pdfUrl: "https://arxiv.org/pdf/2306.02707",
+    categories: ["cs.CL", "cs.AI", "cs.LG"],
+  },
+
+  // ── Efficiency & Architecture (2023) ──────────────────────────────────────
+  {
+    arxivId: "2307.08691",
+    title: "FlashAttention-2: Faster Attention with Better Parallelism and Work Partitioning",
+    summary: "Scaling Transformers to longer sequence lengths has been a major problem in the last several years, promising to improve performance in language modeling and high-resolution image understanding, as well as to unlock new applications in code, audio, and video generation. FlashAttention-2 is 2x faster than FlashAttention-1, with better parallelism and work partitioning to tackle the problem of low GPU occupancy and inefficiency in the standard implementation of attention.",
+    authors: ["Tri Dao"],
+    publishedAt: new Date("2023-07-17"),
+    pdfUrl: "https://arxiv.org/pdf/2307.08691",
+    categories: ["cs.LG"],
+  },
+  {
+    arxivId: "2305.06161",
+    title: "StarCoder: may the source be with you!",
+    summary: "The BigCode community introduces StarCoder and StarCoderBase: 15.5B parameter models with 8K context length trained on permissively licensed data from GitHub. We find that StarCoder outperforms all other open Code LLMs on popular coding benchmarks. We also find that StarCoder is competitive with OpenAI's code-cushman-001 and achieves on-par performance with GPT-3.5 on programming benchmarks.",
+    authors: ["Raymond Li", "Loubna Ben Allal", "Yangtian Zi", "Niklas Muennighoff", "Denis Kocetkov", "Chenghao Mou", "Marc Marone", "Christopher Akiki", "Jia Li", "Jenny Chim"],
+    publishedAt: new Date("2023-05-09"),
+    pdfUrl: "https://arxiv.org/pdf/2305.06161",
+    categories: ["cs.CL", "cs.LG"],
+  },
+  {
+    arxivId: "2107.03374",
+    title: "Evaluating Large Language Models Trained on Code (Codex)",
+    summary: "We introduce Codex, a GPT language model finetuned on publicly available code from GitHub, and study its Python code-writing ability. A distinct production version of Codex powers GitHub Copilot. On HumanEval, a new evaluation set we release, Codex solves 28.8% of the problems, while GPT-3 solves 0% and GPT-J solves 11.4%. We find that repeated sampling from the model is a surprisingly effective strategy for producing working solutions to difficult prompts.",
+    authors: ["Mark Chen", "Jerry Tworek", "Heewoo Jun", "Qiming Yuan", "Henrique Ponde de Oliveira Pinto", "Jared Kaplan", "Harri Edwards", "Yuri Burda", "Nicholas Joseph", "Greg Brockman", "Alex Ray", "Raul Puri", "Gretchen Krueger", "Michael Petrov", "Heidy Khlaaf", "Girish Sastry", "Pamela Mishkin", "Brooke Chan", "Scott Gray", "Nick Ryder", "Mikhail Pavlov", "Alethea Power", "Lukasz Kaiser", "Mohammad Bavarian", "Clemens Winter", "Philippe Tillet", "Felipe Petroski Such", "Dave Cummings", "Matthias Plappert", "Fotios Chantzis", "Elizabeth Barnes", "Ariel Herbert-Voss", "William Hebgen Guss", "Alex Nichol", "Alex Paino", "Nikolas Tezak", "Jie Tang", "Igor Babuschkin", "Suchir Balaji", "Shantanu Jain", "William Saunders", "Christopher Hesse", "Andrew N. Carr", "Jan Leike", "Josh Achiam", "Vedant Misra", "Evan Morikawa", "Alec Radford", "Matthew Knight", "Miles Brundage", "Mira Murati", "Katie Mayer", "Peter Welinder", "Bob McGrew", "Dario Amodei", "Sam McCandlish", "Ilya Sutskever", "Wojciech Zaremba"],
+    publishedAt: new Date("2021-07-07"),
+    pdfUrl: "https://arxiv.org/pdf/2107.03374",
+    categories: ["cs.LG", "cs.CL"],
+  },
+  {
+    arxivId: "2310.03744",
+    title: "Improved Baselines with Visual Instruction Tuning (LLaVA-1.5)",
+    summary: "Large multimodal models (LMM) have recently shown encouraging progress with visual instruction tuning. LLaVA-1.5 achieves state-of-the-art on 11 benchmarks with simple modifications to the original LLaVA: using CLIP-ViT-L-336px with an MLP projection and adding academic-task-oriented VQA data with response formatting prompts. This is achieved with under 1M visual instruction tuning data, and training in ~1 day on a single 8-A100 node.",
+    authors: ["Haotian Liu", "Chunyuan Li", "Yuheng Li", "Yong Jae Lee"],
+    publishedAt: new Date("2023-10-05"),
+    pdfUrl: "https://arxiv.org/pdf/2310.03744",
+    categories: ["cs.CV", "cs.CL", "cs.AI"],
+  },
+
+  // ── 2024 Frontier Models ──────────────────────────────────────────────────
+  {
+    arxivId: "2403.05530",
+    title: "Gemini 1.5: Unlocking multimodal understanding across millions of tokens of context",
+    summary: "In this report, we present the latest model of the Gemini family, Gemini 1.5 Pro, a highly compute-efficient multimodal mixture-of-experts model capable of recalling and reasoning over fine-grained information from millions of tokens of context, including multiple long documents and hours of video and audio. Gemini 1.5 Pro achieves near-perfect recall on long-context retrieval tasks across modalities, improves the state of the art on a broad set of benchmarks.",
+    authors: ["Gemini Team Google"],
+    publishedAt: new Date("2024-03-08"),
+    pdfUrl: "https://arxiv.org/pdf/2403.05530",
+    categories: ["cs.CL", "cs.AI", "cs.CV"],
+  },
+  {
+    arxivId: "2405.04434",
+    title: "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model",
+    summary: "We present DeepSeek-V2, a strong Mixture-of-Experts (MoE) language model characterized by economical training and efficient inference. It comprises 236B total parameters, of which 21B are activated for each token. DeepSeek-V2 adopts innovative architectures including Multi-head Latent Attention (MLA) and DeepSeekMoE to attain strong performance while saving 42.5% of training costs.",
+    authors: ["DeepSeek-AI"],
+    publishedAt: new Date("2024-05-07"),
+    pdfUrl: "https://arxiv.org/pdf/2405.04434",
+    categories: ["cs.CL", "cs.AI", "cs.LG"],
+  },
+  {
+    arxivId: "2407.10671",
+    title: "Qwen2 Technical Report",
+    summary: "This report introduces the Qwen2 series, the latest addition to the Qwen family of large language models. Qwen2 surpasses most prior open-weight models, including the pretrained Llama-3-8B, in performance across a variety of benchmarks addressing language understanding, generation, coding, mathematics, and reasoning. It supports context length of 128K tokens and 29 languages.",
+    authors: ["Qwen Team"],
+    publishedAt: new Date("2024-07-15"),
+    pdfUrl: "https://arxiv.org/pdf/2407.10671",
+    categories: ["cs.CL", "cs.AI"],
+  },
+  {
+    arxivId: "2408.00118",
+    title: "Gemma 2: Improving Open Language Models at a Practical Size",
+    summary: "We introduce Gemma 2, a new addition to the Gemma family of lightweight, state-of-the-art open models. Gemma 2 comes in three sizes: 2B, 9B, and 27B parameters. It achieves state-of-the-art performance for its size, and even competitive performance with models that are 2-3x larger. Key innovations include interleaving local and global attentions and group-query attention.",
+    authors: ["Gemma Team Google"],
+    publishedAt: new Date("2024-08-01"),
+    pdfUrl: "https://arxiv.org/pdf/2408.00118",
+    categories: ["cs.CL", "cs.AI"],
+  },
+  {
+    arxivId: "2412.08905",
+    title: "Phi-4 Technical Report",
+    summary: "We present phi-4, a 14-billion parameter language model developed with a training recipe that is centrally focused on data quality. Unlike most language models, where pre-training is based primarily on organic data, phi-4 strategically incorporates synthetic data throughout the training process. phi-4 substantially outperforms its teacher model GPT-4o on STEM-focused benchmarks.",
+    authors: ["Marah Abdin", "Jyoti Aneja", "Harkirat Behl", "Sébastien Bubeck", "Ronen Eldan", "Suriya Gunasekar", "Michael Harrison", "Russell J. Hewett", "Mojan Javaheripi", "Piero Kauffmann", "James R. Lee", "Yin Tat Lee", "Yuanzhi Li", "Weishung Liu", "Caio César Teodoro Mendes", "Anh Nguyen", "Eric Price", "Gustavo de Rosa", "Olli Saarikivi", "Adil Salim", "Shital Shah", "Xin Wang", "Rachel Ward", "Yue Wu", "Dingli Yu", "Cyril Zhang", "Yi Zhang"],
+    publishedAt: new Date("2024-12-12"),
+    pdfUrl: "https://arxiv.org/pdf/2412.08905",
+    categories: ["cs.CL", "cs.AI"],
+  },
+  {
+    arxivId: "2412.15115",
+    title: "Qwen2.5 Technical Report",
+    summary: "In this report, we introduce Qwen2.5, a comprehensive series of large language models (LLMs) designed to meet diverse needs. Qwen2.5 models come in two categories: base language models and instruction-tuned language models, available in 0.5B, 1.5B, 3B, 7B, 14B, 32B, and 72B parameters. Qwen2.5 surpasses Qwen2 significantly on coding and mathematics. Qwen2.5-72B-Instruct is competitive with the leading open-source model Llama-3-405B-Instruct.",
+    authors: ["Qwen Team"],
+    publishedAt: new Date("2024-12-19"),
+    pdfUrl: "https://arxiv.org/pdf/2412.15115",
+    categories: ["cs.CL", "cs.AI"],
+  },
+
+  // ── 2025 Frontier ─────────────────────────────────────────────────────────
+  {
+    arxivId: "2501.12599",
+    title: "Kimi k1.5: Scaling Reinforcement Learning with LLMs",
+    summary: "Language model pretraining with next token prediction has proved effective for scaling compute but is limited to the amount of reasoning a model can do in context at test time. We introduce Kimi k1.5, a multi-modal LLM trained with RL that achieves state-of-the-art reasoning performance on multiple benchmarks. It matches OpenAI o1 on many tasks while being a more practical system. The key insight is that long context scaling and improved policy optimization are sufficient.",
+    authors: ["Kimi Team"],
+    publishedAt: new Date("2025-01-22"),
+    pdfUrl: "https://arxiv.org/pdf/2501.12599",
+    categories: ["cs.CL", "cs.AI", "cs.LG"],
+  },
+  {
+    arxivId: "2501.17811",
+    title: "Janus-Pro: Unified Multimodal Understanding and Generation with Data and Model Scaling",
+    summary: "In this paper, we introduce Janus-Pro, an advanced version of Janus that improves upon the original in two key dimensions: an optimized training strategy and expanded training data. Janus-Pro achieves 80.0% on GenEval for text-to-image generation and 79.2% on POPE for visual understanding, establishing new state-of-the-art results for unified multimodal models.",
+    authors: ["DeepSeek-AI"],
+    publishedAt: new Date("2025-01-29"),
+    pdfUrl: "https://arxiv.org/pdf/2501.17811",
+    categories: ["cs.CV", "cs.CL", "cs.AI"],
+  },
 ];
 
 export async function seedMustReadPapers(): Promise<number> {
   let added = 0;
 
   for (const paper of MUST_READ_PAPERS) {
-    const exists = await prisma.paper.findUnique({
+    const result = await prisma.paper.upsert({
       where: { arxivId: paper.arxivId },
-    });
-    if (exists) continue;
-
-    await prisma.paper.create({
-      data: {
+      // If it already exists, leave it untouched
+      update: {},
+      // If it was deleted, restore it
+      create: {
         ...paper,
         qualityScore: 1.0,
         qualityReason: "Must-read — foundational paper widely praised by the AI community.",
       },
     });
-    added++;
+
+    // Count only newly created (createdAt === updatedAt within 1s)
+    const isNew = Math.abs(result.createdAt.getTime() - (result.updatedAt?.getTime() ?? result.createdAt.getTime())) < 1000;
+    if (isNew) added++;
   }
 
   return added;

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { ingestNewPapers } from "@/lib/ingest";
 
 const PAGE_SIZE = 20;
 
@@ -11,12 +10,6 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get("search") ?? "";
     const category = searchParams.get("category") ?? "";
     const year = searchParams.get("year") ?? "";
-    const refresh = searchParams.get("refresh") === "true";
-
-    let added = 0;
-    if (refresh) {
-      added = await ingestNewPapers(category || undefined, 30);
-    }
 
     const where: Record<string, unknown> = {};
 
@@ -51,6 +44,7 @@ export async function GET(request: NextRequest) {
           pdfUrl: true,
           categories: true,
           qualityScore: true,
+          upvotes: true,
         },
       }),
       prisma.paper.count({ where }),
@@ -58,7 +52,6 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       papers,
-      added,
       pagination: {
         page,
         pageSize: PAGE_SIZE,

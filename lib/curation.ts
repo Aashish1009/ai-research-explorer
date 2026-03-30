@@ -1,5 +1,4 @@
-import { generateWithGemini, GEMINI_MODELS } from "./gemini";
-import { generateWithGroq, GROQ_MODELS } from "./groq";
+import { generateWithRotation, CURATION_MODELS } from "./models";
 
 interface CurationResult {
   score: number;
@@ -45,25 +44,21 @@ export async function scorePaper(
 ): Promise<CurationResult> {
   const prompt = CURATION_PROMPT(title, summary);
 
-  // Try Gemini first
   try {
-    const raw = await generateWithGemini(prompt, GEMINI_MODELS.curation);
-    return parseScore(raw);
+    const { content } = await generateWithRotation(prompt, CURATION_MODELS);
+    return parseScore(content);
   } catch (e) {
-    console.warn("Gemini curation failed, falling back to Groq:", e instanceof Error ? e.message : e);
+    console.warn(
+      "[curation] All models failed, using default score:",
+      e instanceof Error ? e.message : e
+    );
   }
 
-  // Fallback to Groq
-  try {
-    const raw = await generateWithGroq(prompt, GROQ_MODELS.relevance, 256);
-    return parseScore(raw);
-  } catch (e) {
-    console.warn("Groq curation also failed, using default score:", e instanceof Error ? e.message : e);
-  }
-
-  // If both LLMs fail, accept the paper with a neutral score
-  // (it came from a curated arXiv AI category, so it's likely relevant)
+  // If all LLMs fail, accept with a neutral score
+  // (HuggingFace already curates — papers trending there are likely relevant)
   return { score: 0.8, reason: "Auto-accepted: curation LLMs unavailable." };
 }
 
+// ingest.ts always saves at least 1 paper per run (the top scorer),
+// plus any additional papers scoring >= MIN_SCORE (0.75).
 export const QUALITY_THRESHOLD = 0.75;

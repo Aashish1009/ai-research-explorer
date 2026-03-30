@@ -73,7 +73,7 @@ export function PaperCard({ paper, isBookmarked, onBookmarkChange }: PaperCardPr
               ★ {(paper.qualityScore * 100).toFixed(0)}
             </span>
           )}
-          <span>{formatDate(paper.publishedAt)}</span>
+          <span suppressHydrationWarning>{formatDate(paper.publishedAt)}</span>
         </div>
       </div>
     </div>

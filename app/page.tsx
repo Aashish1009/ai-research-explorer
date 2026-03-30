@@ -4,7 +4,7 @@ import { FilterBar } from "@/components/FilterBar";
 import { PaperList } from "@/components/PaperList";
 import { Pagination } from "@/components/Pagination";
 import { PageSkeleton } from "@/components/LoadingSkeleton";
-import { DailyStatus } from "@/components/DailyStatus";
+import { FetchButton } from "@/components/FetchButton";
 import { prisma } from "@/lib/prisma";
 
 const PAGE_SIZE = 20;
@@ -57,6 +57,7 @@ async function PapersSection({ searchParams }: HomeProps) {
         publishedAt: true,
         categories: true,
         qualityScore: true,
+        upvotes: true,
       },
     }),
     prisma.paper.count({ where }),
@@ -68,7 +69,7 @@ async function PapersSection({ searchParams }: HomeProps) {
     <>
       <div className="text-sm text-gray-400 mb-4">
         {total === 0
-          ? "No papers passed the quality threshold. Try refreshing again."
+          ? "No papers yet — click Run Now above to fetch today's papers from HuggingFace."
           : `${total} curated paper${total !== 1 ? "s" : ""}`}
       </div>
       <PaperList papers={papers} />
@@ -80,18 +81,19 @@ async function PapersSection({ searchParams }: HomeProps) {
 export default function HomePage({ searchParams }: HomeProps) {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <div className="mb-8">
+      <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900 tracking-tight mb-1">
           AI Paper Explorer
         </h1>
         <p className="text-gray-500 text-base">
-          Only the best AI research papers — curated by LLM, explained at every level.
+          Top AI research papers from HuggingFace — curated by LLM, explained at every level.
         </p>
       </div>
 
-      <DailyStatus />
+      {/* Manual fetch trigger — streams live as papers are scored */}
+      <FetchButton />
 
-      <div className="flex flex-wrap items-center gap-3 mb-8 mt-4">
+      <div className="flex flex-wrap items-center gap-3 mb-8">
         <Suspense>
           <SearchBar />
         </Suspense>
@@ -106,4 +108,3 @@ export default function HomePage({ searchParams }: HomeProps) {
     </div>
   );
 }
-
